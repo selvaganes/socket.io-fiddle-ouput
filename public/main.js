@@ -1,8 +1,19 @@
 "use strict";
 
+//Modified: selvaganes
+const socket = io();
+
 (function() {
 
-  const socket = io();
+  //Added: selvaganes
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("myButton").addEventListener("click", function() {
+      console.log("Sneezed");
+      socket.emit('request', 'ACHOOOOO!!!' , (response) => {
+        console.log(response)
+      });
+    });
+  });
 
   socket.on("connect", () => {
     console.log(`connect ${socket.id}`);
